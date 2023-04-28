@@ -2,14 +2,18 @@ package main
 
 import (
 	"net/http"
-
-	"github.com/labstack/echo/v4"
 )
 
 func main() {
-	e := echo.New()
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Estas en sisal.cloud")
-	})
-	e.Logger.Fatal(e.Start(":8080"))
+
+	
+	fs := http.FileServer(http.Dir("../../static/"))
+	http.Handle("/static/", http.StripPrefix("/static/",fs))
+	
+
+
+	http.ListenAndServe("127.0.0.1:8080", nil)
+
+
+
 }
