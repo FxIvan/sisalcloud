@@ -1,6 +1,7 @@
 package main
 
 import(
+	"fmt"
 	"net/http"
 	"github.com/gin-gonic/gin"
 )
@@ -27,11 +28,27 @@ func getAlbums(c *gin.Context){
 	c.IndentedJSON(http.StatusOK, albums)
 }
 
+func postAlbums(c *gin.Context){
+
+	var newAlbum album
+	//console.log pero en go
+	fmt.Println(newAlbum)
+	//obtenemos la direccion de la memoria de &newAlbum
+	if err := c.BindJSON(&newAlbum);
+	err != nil{
+		return
+	}
+
+	albums = append(albums,newAlbum)
+	c.IndentedJSON(http.StatusCreated, albums)
+}
+
 func main(){
 	//En este caso ponemos gin.Default() para que nos permite manejar las peticiones entrantes y decir que funcion tiene que hacer ante un peticion
 	//Puede manejar GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD
 	router := gin.Default()
 	router.GET("/albums", getAlbums)
+	router.POST("/albums", postAlbums)
 
 	//Corre el servidor en el puerto 8080
 	router.Run("127.0.0.1:8080")
