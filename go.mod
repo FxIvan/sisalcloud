@@ -1,17 +1,12 @@
 module dockergo
-module github.com/FxIvan/sisalcloud-contenedor-go
 
 go 1.20
 
 require github.com/gin-gonic/gin v1.9.0
 
-go {
-    sources = [
-        "excercise/*.go"
-    ]
-}
 
 require (
+	github.com/FxIvan/sisalcloud-contenedor-go v1.0.0
 	github.com/bytedance/sonic v1.8.8 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
