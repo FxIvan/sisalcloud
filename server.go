@@ -4,6 +4,7 @@ import(
 	"fmt"
 	"net/http"
 	"github.com/gin-gonic/gin"
+	"github.com/FxIvan/contenedor-excel/excercise/twoparameter"
 )
 
 //Definicion de structura de JSON
@@ -44,14 +45,13 @@ func postAlbums(c *gin.Context){
 
 	var newAlbum album
 	//console.log pero en go
-	fmt.Println(newAlbum)
 	//obtenemos la direccion de la memoria de &newAlbum
 	if err := c.BindJSON(&newAlbum);
 	err != nil{
 		return
 	}
-
 	albums = append(albums,newAlbum)
+	fmt.Println(albums)
 	c.IndentedJSON(http.StatusCreated, albums)
 }
 
@@ -62,6 +62,7 @@ func main(){
 	router.GET("/albums", getAlbums)
 	router.POST("/albums", postAlbums)
 	router.GET("/albums/:id",getIdAlbums)
+	router.GET("/twoparameter/:title/:page",twoparameter.twoParameter())
 
 	//Corre el servidor en el puerto 8080
 	router.Run("127.0.0.1:8080")
