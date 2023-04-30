@@ -4,7 +4,7 @@ import(
 	"fmt"
 	"net/http"
 	"github.com/gin-gonic/gin"
-	"github.com/FxIvan/contenedor-excel/excercise/twoparameter"
+	"github.com/FxIvan/sisalcloud-contenedor-go/blob/main/excercise/twoParameterUrl"
 )
 
 //Definicion de structura de JSON
