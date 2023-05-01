@@ -2,7 +2,7 @@ version: '3.3'
 services:
   api:
     build: .
-    container_name: "excelgo"
+    container_name: "servergo"
     ports:
       - "8080:8080"
       
