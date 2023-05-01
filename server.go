@@ -1,10 +1,11 @@
 package main
 
 import(
+	"excercise"
 	"fmt"
 	"net/http"
 	"github.com/gin-gonic/gin"
-	"github.com/FxIvan/sisalcloud-contenedor-go/blob/main/excercise/twoParameterUrl"
+	"github.com/gorilla/mux"
 )
 
 //Definicion de structura de JSON
@@ -59,10 +60,11 @@ func main(){
 	//En este caso ponemos gin.Default() para que nos permite manejar las peticiones entrantes y decir que funcion tiene que hacer ante un peticion
 	//Puede manejar GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD
 	router := gin.Default()
+	routerMux := mux.NewRouter()
 	router.GET("/albums", getAlbums)
 	router.POST("/albums", postAlbums)
 	router.GET("/albums/:id",getIdAlbums)
-	router.GET("/twoparameter/:title/:page",twoparameter.twoParameter())
+	routerMux.HandleFunc("/twoparameter/:title/:page",twoparameter.TwoParameter)
 
 	//Corre el servidor en el puerto 8080
 	router.Run("127.0.0.1:8080")
