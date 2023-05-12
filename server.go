@@ -2,6 +2,8 @@ package main
 
 import(
 	"excercise"
+	"websocket"
+	"websockethtml"
 	"fmt"
 	"net/http"
 	"github.com/gin-gonic/gin"
@@ -65,6 +67,8 @@ func main(){
 	router.POST("/albums", postAlbums)
 	router.GET("/albums/:id",getIdAlbums)
 	routerMux.HandleFunc("/twoparameter/:title/:page",twoparameter.TwoParameter)
+	routerMux.HandleFunc("/echo",websocket.WebSocket)
+	routerMux.HandleFunc("/",websockethtml.RenderizarHTML)
 
 	//Corre el servidor en el puerto 8080
 	router.Run("0.0.0.0:8080")
